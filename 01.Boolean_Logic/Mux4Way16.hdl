@@ -16,5 +16,20 @@ CHIP Mux4Way16 {
     OUT out[16];
 
     PARTS:
-    // Put your code here:
+    // Now this is a Mux4 (4 inputs to switch between)
+    // where each input is a 16-bit number
+    // but don't worry about the input size, this is why we
+    // first implement a Mux16 for working with bitwise 16-bit numbers
+
+    // If you draw all the 4 possible 'sel' combinations
+    // you will realize that both (a, b) and (c, d) works as a Mux
+    // where sel[0] is the selector
+    Mux16(a=a, b=b, sel=sel[0], out=abMUX);
+    Mux16(a=c, b=d, sel=sel[0], out=cdMUX);
+
+    // Now we have two 16-bit numbers to switch between,
+    // but now who sel[1] is the selector
+    Mux16(a=abMUX, b=cdMUX, sel=sel[1], out=out);
+
+    // Remember to always look at the specification at the top of the file
 }

@@ -12,9 +12,22 @@
  */
 
 CHIP DMux4Way {
-    IN in, sel[2];
+    IN in, sel[2]; // in the order [sel1, sel0]
     OUT a, b, c, d;
 
     PARTS:
-    // Put your code here:
+    // Remember that the sel[2] bus is an array of 2 bits,
+    // where sel[0] is the LSB (right) and sel[1] is the MSB (left).
+    Not(in=sel[1], out=NOTsel1);
+    Not(in=sel[0], out=NOTsel0);
+
+    And(a=NOTsel1, b=NOTsel0, out=sel00);
+    And(a=NOTsel1, b=sel[0],  out=sel01);
+    And(a=sel[1],  b=NOTsel0, out=sel10);
+    And(a=sel[1],  b=sel[0],  out=sel11);
+
+    And(a=in, b=sel00, out=a);
+    And(a=in, b=sel01, out=b);
+    And(a=in, b=sel10, out=c);
+    And(a=in, b=sel11, out=d);
 }

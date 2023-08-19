@@ -18,5 +18,15 @@ CHIP Mux8Way16 {
     OUT out[16];
 
     PARTS:
-    // Put your code here:
+    // Don't hesitate when using your previous implementations, digital
+    // electronics is all about abstraction and reuse.
+
+    // If you draw all the 8 possible 'sel' combinations, you will
+    // notice that both (a, b, c, d) and (e, f, g, h) are a Mux4Way,
+    // and the resulting output is a Mux2Way of these two.
+
+    Mux4Way16(a=a, b=b, c=c, d=d, sel=sel[0..1], out=abcdMUX);
+    Mux4Way16(a=e, b=f, c=g, d=h, sel=sel[0..1], out=efghMUX);
+
+    Mux16(a=abcdMUX, b=efghMUX, sel=sel[2], out=out);
 }

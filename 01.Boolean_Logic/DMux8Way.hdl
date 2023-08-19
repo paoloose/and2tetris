@@ -16,5 +16,26 @@ CHIP DMux8Way {
     OUT a, b, c, d, e, f, g, h;
 
     PARTS:
-    // Put your code here:
+    // When schematizing this DMux8Way, we note that the the 8-bit output
+    // can be seen as two 4-bit outputs, where each 4-bit group behaves
+    // like a DMux4Way.
+
+    // {a, b, c, d} = {in, 0, 0, 0} if sel == 00
+    //                {0, in, 0, 0} if sel == 01
+    //                {0, 0, in, 0} if sel == 10
+    //                {0, 0, 0, in} if sel == 11
+    // {e, f, g, h} = {in, 0, 0, 0} if sel == 00
+    //                {0, in, 0, 0} if sel == 01
+    //                {0, 0, in, 0} if sel == 10
+    //                {0, 0, 0, in} if sel == 11
+
+    // Let's build this DMux4
+    DMux4Way(in=in, sel=sel[0..1], a=DMUX1, b=DMUX2, c=DMUX3, d=DMUX4);
+
+    // So when to use {a, b, c, d} and when to use {e, f, g, h}?
+    // it depends on the value of sel[2]
+    DMux(in=DMUX1, sel=sel[2], a=a, b=e);
+    DMux(in=DMUX2, sel=sel[2], a=b, b=f);
+    DMux(in=DMUX3, sel=sel[2], a=c, b=g);
+    DMux(in=DMUX4, sel=sel[2], a=d, b=h);
 }
