@@ -13,5 +13,10 @@ CHIP Xor {
     OUT out;
 
     PARTS:
-    // Put your code here:
+    // Xor behaves like and Or
+    Or(a=a, b=b, out=aORb);
+    // Except when both inputs are 1
+    Nand(a=a, b=b, out=aNANDb); // this is 1 when 'a' and 'b' are not 1
+    // So lets check for both conditions
+    And(a=aORb, b=aNANDb, out=out);
 }
