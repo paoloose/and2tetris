@@ -1,3 +1,4 @@
 .vscode/
 tools/
 *.out
+*.zip
