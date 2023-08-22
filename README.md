@@ -15,7 +15,7 @@ system.
 |  | Project                          | Description                                                                                  |
 | ---- | -------------------------------- | -------------------------------------------------------------------------------------------- |
 | 🟢  | 1. Boolean Logic                 | Building the elementary gates, their 16-bit variant and the Mux and DMux multi-way variants. |
-| 🔴  | 2. Boolean Arithmetic            |                                                                                              |
+| 🟠  | 2. Boolean Arithmetic            |                                                                                              |
 | 🔴  | 3. Sequential Logic              |                                                                                              |
 | 🔴  | 4. Machine Language              |                                                                                              |
 | 🔴  | 5. Computer Architecture         |                                                                                              |
