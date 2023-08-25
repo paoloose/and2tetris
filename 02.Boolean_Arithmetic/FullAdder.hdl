@@ -13,5 +13,10 @@ CHIP FullAdder {
         carry;   // Left bit of a + b + c
 
     PARTS:
-    // Put you code here:
+    // A full adder is usually implemented with [2 xor, 2 and, 1 or], but
+    // why not use the half adder we just made?
+    HalfAdder(a=a, b=b, sum=aSUMb, carry=abCARRIES);
+    HalfAdder(a=aSUMb, b=c, sum=sum, carry=abcCARRIES);
+    // The adder output a carries either from the first half adder or the second
+    Or(a=abCARRIES, b=abcCARRIES, out=carry);
 }

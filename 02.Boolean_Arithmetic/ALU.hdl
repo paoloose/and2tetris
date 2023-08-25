@@ -7,7 +7,7 @@
  * The ALU (Arithmetic Logic Unit).
  * Computes one of the following functions:
  * x+y, x-y, y-x, 0, 1, -1, x, y, -x, -y, !x, !y,
- * x+1, y+1, x-1, y-1, x&y, x|y on two 16-bit inputs, 
+ * x+1, y+1, x-1, y-1, x&y, x|y on two 16-bit inputs,
  * according to 6 input bits denoted zx,nx,zy,ny,f,no.
  * In addition, the ALU computes two 1-bit outputs:
  * if the ALU output == 0, zr is set to 1; otherwise zr is set to 0;
@@ -27,8 +27,8 @@
 // if (out < 0) set ng = 1
 
 CHIP ALU {
-    IN  
-        x[16], y[16],  // 16-bit inputs        
+    IN
+        x[16], y[16],  // 16-bit inputs
         zx, // zero the x input?
         nx, // negate the x input?
         zy, // zero the y input?
@@ -36,11 +36,47 @@ CHIP ALU {
         f,  // compute out = x + y (if 1) or x & y (if 0)
         no; // negate the out output?
 
-    OUT 
+    OUT
         out[16], // 16-bit output
         zr, // 1 if (out == 0), 0 otherwise
         ng; // 1 if (out < 0),  0 otherwise
 
     PARTS:
-   // Put you code here:
+    // Applying zx
+    Mux16(a=x, b[0..15]=false, sel=zx, out=x1);
+
+    // Applying nx
+    // I'd rather use a Xor16 here, but the guide recommend to only use the
+    // provided chips as possible
+    Not16(in=x1, out=NOTx1);
+    Mux16(a=x1, b=NOTx1, sel=nx, out=x2);
+
+    // Applying zy
+    Mux16(a=y, b[0..15]=false, sel=zy, out=y1);
+
+    // Applying ny
+    Not16(in=y1, out=NOTy1);
+    Mux16(a=y1, b=NOTy1, sel=ny, out=y2);
+
+    // Deciding between addition and bitwise and
+    And16(a=x2, b=y2, out=xANDy);
+    Add16(a=x2, b=y2, out=xADDy);
+    Mux16(a=xANDy, b=xADDy, sel=f, out=computation);
+
+    // Deciding between negation and not
+    Not16(in=computation, out=NOTcomputation);
+    Mux16(
+        a=computation,
+        b=NOTcomputation,
+        sel=no,
+        out=out,
+        out=pipedOut, // Save for the zr
+        out[15]=ng // The most significant bit is the negative flag on two's complement
+    );
+
+    // Note: I implement a custom Or16Way chip here to simplify the code.
+    //       If you don't want to create new chips, then in the Mux16 save
+    //       the 'out[0..7]=' and 'out[8..15]=' and use a Or8Way on them
+    Or16Way(in=pipedOut, out=NOTzr);
+    Not(in=NOTzr, out=zr);
 }

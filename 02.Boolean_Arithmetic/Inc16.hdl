@@ -13,5 +13,7 @@ CHIP Inc16 {
     OUT out[16];
 
     PARTS:
-   // Put you code here:
+    // Only the least significant bit is 1
+    // b[1..15] is already set to false but is better to be explicit
+    Add16(a=in, b[0]=true, b[1..15]=false, out=out);
 }

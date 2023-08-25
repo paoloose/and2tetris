@@ -12,20 +12,20 @@ system.
 
 ## Progress
 
-|  | Project                          | Description                                                                                  |
-| ---- | -------------------------------- | -------------------------------------------------------------------------------------------- |
-| 🟢  | 1. Boolean Logic                 | Building the elementary gates, their 16-bit variant and the Mux and DMux multi-way variants. |
-| 🟠  | 2. Boolean Arithmetic            |                                                                                              |
-| 🔴  | 3. Sequential Logic              |                                                                                              |
-| 🔴  | 4. Machine Language              |                                                                                              |
-| 🔴  | 5. Computer Architecture         |                                                                                              |
-| 🔴  | 6. Assembler                     |                                                                                              |
-| 🔴  | 7. VM I: Stack Arithmetic        |                                                                                              |
-| 🔴  | 8. VM II: Program Control        |                                                                                              |
-| 🔴  | 9. High-Level Language           |                                                                                              |
-| 🔴  | 10. Compiler I: Syntax Analysis  |                                                                                              |
-| 🔴  | 11. Compiler II: Code Generation |                                                                                              |
-| 🔴  | 12. Operating System             |                                                                                              |
+|     | Project                          | Description                                                                                       |
+| --- | -------------------------------- | ------------------------------------------------------------------------------------------------- |
+| 🟢 | 1. Boolean Logic                 | Building the elementary gates, their 16-bit variant and the Mux and DMux multi-way variants.      |
+| 🟢 | 2. Boolean Arithmetic            | Constructing the Hack ALU, starting from a half adder to a full 16-bit adder with 6 control bits. |
+| 🔴 | 3. Sequential Logic              |                                                                                                   |
+| 🔴 | 4. Machine Language              |                                                                                                   |
+| 🔴 | 5. Computer Architecture         |                                                                                                   |
+| 🔴 | 6. Assembler                     |                                                                                                   |
+| 🔴 | 7. VM I: Stack Arithmetic        |                                                                                                   |
+| 🔴 | 8. VM II: Program Control        |                                                                                                   |
+| 🔴 | 9. High-Level Language           |                                                                                                   |
+| 🔴 | 10. Compiler I: Syntax Analysis  |                                                                                                   |
+| 🔴 | 11. Compiler II: Code Generation |                                                                                                   |
+| 🔴 | 12. Operating System             |                                                                                                   |
 
 ## External links
 
