@@ -1,8 +1,5 @@
 # Project 2
 
-The 6 control bits of the Hack ALU allow us to compute 2⁶ = 64 different
-functions with the inputs.
-
 Given the chips implemented in the project 1, implement:
 
 - Half adder
@@ -19,6 +16,13 @@ Given the chips implemented in the project 1, implement:
 
 - Arithmetic Logic Unit (ALU)
   ![The ALU specification](../assets/ALU.png)
+
+## ALU operations
+
+The Hack ALU has 6 control bits capable of 2⁶ = 64 different operations
+of which 18 interest us:
+
+![ALU capabilities](../assets/ALU_capabilities.png)
 
 ## Resources
 
